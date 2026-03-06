@@ -48,7 +48,7 @@ export const Navbar = () => {
           <motion.img
             src="/logo.png"
             alt="Aradhya NextGen Technologies"
-            className="w-[52px] h-[52px] object-contain"
+            className="w-[48px] h-[48px] md:w-[52px] md:h-[52px] object-contain"
             whileHover={{ scale: 1.08 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           />

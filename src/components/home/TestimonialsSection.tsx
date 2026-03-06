@@ -38,8 +38,10 @@ export const TestimonialsSection = () => {
 
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-white" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.05),transparent_70%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -60,7 +62,7 @@ export const TestimonialsSection = () => {
               exit="exit"
               transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <div className="bg-white/80 backdrop-blur-sm p-8 md:p-12 rounded-2xl border border-border shadow-lg">
+              <div className="glass-card p-8 md:p-12">
                 <Quote className="w-10 h-10 text-primary/20 mx-auto mb-6" />
                 <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed font-medium text-center">
                   "{testimonials[current].content}"
@@ -73,7 +75,7 @@ export const TestimonialsSection = () => {
                   ))}
                 </div>
                 <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/20 flex items-center justify-center text-primary font-bold text-lg">
                     {testimonials[current].name.charAt(0)}
                   </div>
                   <div className="text-left">

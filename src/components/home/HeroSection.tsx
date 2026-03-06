@@ -14,7 +14,7 @@ const rotatingTexts = [
 
 const floatingCards = [
   { icon: Globe, title: "Web Development", desc: "Modern React & Next.js applications", pos: "top-4 left-4", w: "w-56", anim: { y: [0, -30, 0], rotate: [-2, 2, -2] }, dur: 5 },
-  { icon: Cpu, title: "AI Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 35, 0], rotate: [2, -3, 2] }, dur: 5.5, delay: 0.5 },
+  { icon: Cpu, title: "AI & Automation", desc: "Smart business workflows", pos: "top-2 right-2", w: "w-52", anim: { y: [0, 35, 0], rotate: [2, -3, 2] }, dur: 5.5, delay: 0.5 },
   { icon: Cloud, title: "Cloud Solutions", desc: "Scalable cloud infrastructure", pos: "bottom-24 left-12", w: "w-52", anim: { y: [0, -25, 0], x: [0, 25, 0], rotate: [-2, 1.5, -2] }, dur: 5, delay: 1 },
   { icon: BarChart3, title: "Growth Analytics", desc: "Data-driven decisions", pos: "bottom-8 right-8", w: "w-48", anim: { y: [0, -40, 0], rotate: [2, -2, 2] }, dur: 6, delay: 0.3 },
 ];
@@ -31,30 +31,34 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Gradient mesh background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-white to-primary/5" />
-      <div className="absolute top-0 left-0 w-[900px] h-[900px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_60%)] -translate-x-1/4 -translate-y-1/4" />
-      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,hsl(var(--accent)/0.06),transparent_60%)] translate-x-1/4 translate-y-1/4" />
+      {/* Animated grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_40%,transparent_100%)]" />
 
-      {/* Dot grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground)/0.03)_1px,transparent_0)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_50%,transparent_100%)]" />
+      {/* Radial glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.12),transparent_65%)]" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_center,hsl(var(--accent)/0.06),transparent_60%)] translate-x-1/4 translate-y-1/4" />
+
+      {/* Floating blur shapes */}
+      <motion.div
+        animate={{ y: [0, -40, 0], x: [0, 20, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[15%] right-[20%] w-80 h-80 bg-primary/8 rounded-full blur-[120px]"
+      />
+      <motion.div
+        animate={{ y: [0, 30, 0], x: [0, -15, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        className="absolute bottom-[20%] left-[10%] w-64 h-64 bg-accent/6 rounded-full blur-[100px]"
+      />
+      <motion.div
+        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        className="absolute top-[60%] right-[40%] w-48 h-48 bg-primary/5 rounded-full blur-[80px]"
+      />
 
       {/* Logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img src="/logo.png" alt="" className="w-[600px] h-[600px] object-contain opacity-[0.02]" draggable={false} />
       </div>
-
-      {/* Floating blobs */}
-      <motion.div
-        animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-1/4 w-72 h-72 bg-primary/6 rounded-full blur-[100px]"
-      />
-      <motion.div
-        animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/3 left-[15%] w-56 h-56 bg-accent/5 rounded-full blur-[80px]"
-      />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -167,7 +171,7 @@ export const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right - Floating glass cards */}
+          {/* Right - Floating glass cards with better hover */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
@@ -181,13 +185,18 @@ export const HeroSection = () => {
                 key={card.title}
                 animate={card.anim}
                 transition={{ duration: card.dur, repeat: Infinity, ease: "easeInOut", delay: card.delay || 0 }}
-                whileHover={{ y: -12, scale: 1.06, rotate: 0, boxShadow: "0 24px 48px -12px rgba(0,0,0,0.18)" }}
-                className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default`}
+                whileHover={{ y: -10, scale: 1.05, boxShadow: "0 25px 60px -12px rgba(0,0,0,0.15)" }}
+                className={`absolute ${card.pos} glass-card p-5 ${card.w} cursor-default group`}
               >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110">
-                  <card.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h4 className="font-heading font-semibold text-sm mb-1 text-foreground">{card.title}</h4>
+                <motion.div
+                  whileHover={{ rotate: 8, scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center mb-3 relative"
+                >
+                  <div className="absolute inset-0 rounded-xl bg-primary/15 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <card.icon className="w-5 h-5 text-primary relative z-10" />
+                </motion.div>
+                <h4 className="font-heading font-semibold text-sm mb-1 text-foreground group-hover:text-primary transition-colors">{card.title}</h4>
                 <p className="text-xs text-muted-foreground">{card.desc}</p>
               </motion.div>
             ))}

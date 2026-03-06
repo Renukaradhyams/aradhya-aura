@@ -13,7 +13,8 @@ const faqs = [
 export const FAQSection = () => {
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.04),transparent_70%)]" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16">
@@ -26,12 +27,20 @@ export const FAQSection = () => {
           className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-white px-6 rounded-xl border border-border shadow-sm data-[state=open]:shadow-md transition-shadow">
-                <AccordionTrigger className="text-left hover:no-underline py-5">
-                  <span className="font-heading font-semibold text-foreground">{faq.question}</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">{faq.answer}</AccordionContent>
-              </AccordionItem>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <AccordionItem value={`item-${index}`} className="glass-card px-6 data-[state=open]:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.1)] transition-shadow">
+                  <AccordionTrigger className="text-left hover:no-underline py-5">
+                    <span className="font-heading font-semibold text-foreground">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-5">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
         </motion.div>
