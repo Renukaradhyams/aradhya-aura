@@ -38,8 +38,8 @@ export const Navbar = () => {
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/70 backdrop-blur-2xl border-b border-border/40 shadow-[0_1px_3px_0_rgba(0,0,0,0.05),0_4px_24px_-2px_rgba(0,0,0,0.04)] py-2"
-          : "bg-transparent py-4"
+          ? "bg-white/70 backdrop-blur-2xl border-b border-border/40 shadow-[0_2px_8px_0_rgba(0,0,0,0.04),0_8px_32px_-4px_rgba(0,0,0,0.06)] py-2"
+          : "bg-white/40 backdrop-blur-md py-4"
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
