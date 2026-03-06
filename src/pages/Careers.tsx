@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Send, Rocket, ChevronDown, ChevronUp, MessageCircle } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 import { useToast } from "@/hooks/use-toast";
 import { careersConfig } from "@/config/careersConfig";
 import { getWhatsAppUrl } from "@/config/contactInfo";
@@ -82,8 +83,19 @@ const Careers = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Careers | Aradhya NextGen Technologies - Join Our Team</title>
-        <meta name="description" content="Join Aradhya NextGen Technologies! We're looking for talented developers, designers, and interns." />
+        <title>{seoConfig.careers.title}</title>
+        <meta name="description" content={seoConfig.careers.description} />
+        <meta name="keywords" content={seoConfig.careers.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.careers.path)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.careers.path)} />
+        <meta property="og:title" content={seoConfig.careers.title} />
+        <meta property="og:description" content={seoConfig.careers.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoConfig.careers.title} />
+        <meta name="twitter:description" content={seoConfig.careers.description} />
       </Helmet>
 
       {/* Hero */}

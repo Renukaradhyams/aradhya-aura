@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { contactInfo, getWhatsAppUrl, getPhoneUrl, getEmailUrl } from "@/config/contactInfo";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 import { useToast } from "@/hooks/use-toast";
 
 const formSteps = [
@@ -90,8 +91,19 @@ const Contact = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Contact Us | Aradhya NextGen - Get a Proposal</title>
-        <meta name="description" content="Get in touch with Aradhya NextGen for your web development project. We respond within 24 hours." />
+        <title>{seoConfig.contact.title}</title>
+        <meta name="description" content={seoConfig.contact.description} />
+        <meta name="keywords" content={seoConfig.contact.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.contact.path)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.contact.path)} />
+        <meta property="og:title" content={seoConfig.contact.title} />
+        <meta property="og:description" content={seoConfig.contact.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoConfig.contact.title} />
+        <meta name="twitter:description" content={seoConfig.contact.description} />
       </Helmet>
 
       <section className="pt-32 pb-24 relative">
