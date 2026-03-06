@@ -18,7 +18,7 @@ import { CTASection } from "@/components/home/CTASection";
 import { FutureFeaturesSection } from "@/components/home/FutureFeaturesSection";
 import { EnquiryModal } from "@/components/home/EnquiryModal";
 import { Helmet } from "react-helmet-async";
-import { seoConfig } from "@/config/siteConfig";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 
 const Index = () => {
   const [showAutoEnquiry, setShowAutoEnquiry] = useState(false);
@@ -39,27 +39,45 @@ const Index = () => {
       <Helmet>
         <title>{seoConfig.home.title}</title>
         <meta name="description" content={seoConfig.home.description} />
-        <meta name="keywords" content="web development, React websites, AI automation, cloud platforms, digital transformation, Bangalore, India" />
+        <meta name="keywords" content={seoConfig.home.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.home.path)} />
+
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aradhyanextgen.lovable.app/" />
-        <meta property="og:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
-        <meta property="og:description" content="We build scalable web platforms, AI automation systems, and cloud solutions for startups and enterprises." />
-        <meta property="og:site_name" content="Aradhya NextGen Technologies" />
-        <meta property="og:locale" content="en_IN" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.home.path)} />
+        <meta property="og:title" content={seoConfig.home.title} />
+        <meta property="og:description" content={seoConfig.home.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta property="og:site_name" content={siteConfig.name} />
+        <meta property="og:locale" content={siteConfig.locale} />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Aradhya NextGen Technologies | Web, AI & Cloud Solutions" />
-        <meta name="twitter:description" content="We build scalable web platforms, AI automation systems, and cloud solutions." />
-        <link rel="canonical" href="https://aradhyanextgen.lovable.app/" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Aradhya NextGen Technologies",
-          "url": "https://aradhyanextgen.lovable.app",
-          "logo": "https://aradhyanextgen.lovable.app/logo.png",
-          "description": "Web development, AI automation, and cloud solutions company based in Bangalore, India.",
-          "address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressCountry": "IN" },
-          "contactPoint": { "@type": "ContactPoint", "telephone": "+91-6360076463", "contactType": "sales" }
-        })}</script>
+        <meta name="twitter:title" content={seoConfig.home.title} />
+        <meta name="twitter:description" content={seoConfig.home.description} />
+        <meta name="twitter:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:site" content={siteConfig.twitterHandle} />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            logo: siteConfig.defaultOgImage,
+            description: siteConfig.description,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Bangalore",
+              addressCountry: "IN",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: siteConfig.phone,
+              contactType: "sales",
+              email: siteConfig.email,
+            },
+          })}
+        </script>
       </Helmet>
       
       <HeroSection />

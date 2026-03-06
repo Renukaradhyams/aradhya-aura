@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet-async";
 import emailjs from "@emailjs/browser";
 import { emailConfig } from "@/config/emailConfig";
 import { getWhatsAppUrl } from "@/config/contactInfo";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 import { useToast } from "@/hooks/use-toast";
 
 const services = [
@@ -53,8 +54,19 @@ const Enquiry = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Get a Consultation | Aradhya NextGen Technologies</title>
-        <meta name="description" content="Start your project with Aradhya NextGen Technologies. Get a free consultation for web development, AI, and cloud solutions." />
+        <title>{seoConfig.enquiry.title}</title>
+        <meta name="description" content={seoConfig.enquiry.description} />
+        <meta name="keywords" content={seoConfig.enquiry.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.enquiry.path)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.enquiry.path)} />
+        <meta property="og:title" content={seoConfig.enquiry.title} />
+        <meta property="og:description" content={seoConfig.enquiry.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoConfig.enquiry.title} />
+        <meta name="twitter:description" content={seoConfig.enquiry.description} />
       </Helmet>
 
       <section className="pt-32 pb-20 relative overflow-hidden">

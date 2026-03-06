@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { solutions } from "@/config/solutionsConfig";
 import { PricingSection } from "@/components/home/PricingSection";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 
 const Solutions = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -18,8 +19,19 @@ const Solutions = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Solutions | Aradhya NextGen Technologies - Web & Digital Solutions</title>
-        <meta name="description" content="Explore our web development solutions: Startup MVPs, AI & Automation, E-commerce, Custom Software, and more." />
+        <title>{seoConfig.solutions.title}</title>
+        <meta name="description" content={seoConfig.solutions.description} />
+        <meta name="keywords" content={seoConfig.solutions.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.solutions.path)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.solutions.path)} />
+        <meta property="og:title" content={seoConfig.solutions.title} />
+        <meta property="og:description" content={seoConfig.solutions.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoConfig.solutions.title} />
+        <meta name="twitter:description" content={seoConfig.solutions.description} />
       </Helmet>
 
       {/* Hero Section */}
