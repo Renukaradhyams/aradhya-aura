@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import galaxyPowerSolarLogo from "@/assets/galaxypowersolar.png";
+import karunaduLedLogo from "@/assets/karunadu_led.png";
+import unnathiCncLogo from "@/assets/unnathicnc.png";
 
 const projects = [
   {
@@ -10,6 +13,7 @@ const projects = [
     tech: ["React", "Tailwind CSS", "SEO", "Lead Gen"],
     gradient: "from-emerald-50 to-teal-50",
     accentColor: "emerald",
+    logo: galaxyPowerSolarLogo,
   },
   {
     title: "Karunadu LED",
@@ -18,6 +22,7 @@ const projects = [
     tech: ["React", "Framer Motion", "Responsive", "B2B"],
     gradient: "from-blue-50 to-indigo-50",
     accentColor: "blue",
+    logo: karunaduLedLogo,
   },
   {
     title: "Unnathi CNC",
@@ -26,6 +31,7 @@ const projects = [
     tech: ["React", "TypeScript", "SEO", "Industrial"],
     gradient: "from-amber-50 to-orange-50",
     accentColor: "amber",
+    logo: unnathiCncLogo,
   },
 ];
 
@@ -58,6 +64,14 @@ export const CaseStudiesSection = () => {
                 {/* Image area with zoom effect */}
                 <div className={`h-44 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--foreground)/0.04)_1px,transparent_0)] bg-[size:20px_20px] transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 flex items-center justify-center p-6">
+                    <img
+                      src={project.logo}
+                      alt={`${project.title} logo`}
+                      className="max-h-20 w-auto object-contain drop-shadow-md"
+                      loading="lazy"
+                    />
+                  </div>
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
                     <motion.div

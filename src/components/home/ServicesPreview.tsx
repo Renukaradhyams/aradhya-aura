@@ -40,13 +40,13 @@ export const ServicesPreview = () => {
                   <service.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-lg mb-3 text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 flex-grow leading-relaxed">{service.description}</p>
-                <div className="mb-4">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{service.description}</p>
+                <div className="mb-4 min-h-[4.5rem]">
                   {service.features.map((feature, i) => (
                     <span key={i} className="inline-block text-xs px-2.5 py-1 bg-primary/8 text-primary rounded-full mr-2 mb-2 font-medium">{feature}</span>
                   ))}
                 </div>
-                <Link to="/solutions" className="inline-flex items-center text-sm text-primary font-semibold group/link">
+                <Link to="/solutions" className="mt-2 inline-flex items-center text-sm text-primary font-semibold group/link">
                   Learn more<ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                 </Link>
               </div>

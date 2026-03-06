@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Target, Eye, Rocket, Lightbulb, Users2, Award } from "lucide-react";
 import { aboutConfig } from "@/config/aboutConfig";
-import { seoConfig } from "@/config/siteConfig";
+import { buildCanonicalUrl, seoConfig, siteConfig } from "@/config/siteConfig";
 import { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 
@@ -51,6 +51,17 @@ const About = () => {
       <Helmet>
         <title>{seoConfig.about.title}</title>
         <meta name="description" content={seoConfig.about.description} />
+        <meta name="keywords" content={seoConfig.about.keywords} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={buildCanonicalUrl(seoConfig.about.path)} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={buildCanonicalUrl(seoConfig.about.path)} />
+        <meta property="og:title" content={seoConfig.about.title} />
+        <meta property="og:description" content={seoConfig.about.description} />
+        <meta property="og:image" content={siteConfig.defaultOgImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoConfig.about.title} />
+        <meta name="twitter:description" content={seoConfig.about.description} />
       </Helmet>
 
       {/* ═══ HERO ═══ */}
